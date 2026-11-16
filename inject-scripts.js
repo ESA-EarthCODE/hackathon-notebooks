@@ -56,8 +56,9 @@ const DYNAMIC_SCRIPT = `
         window.LuigiClient.addInitListener((context) => {
             log("✅ Context Received");
             if (context.workspaceConfig && context.workspaceConfig.home) {
-                const home = context.workspaceConfig.home;
-                activeHubUrl = home.replace(/\\/$/, '') + "/hub/user-redirect/git-pull";
+                let home = context.workspaceConfig.home;
+                if (home.endsWith('/')) home = home.substring(0, home.length - 1);
+                activeHubUrl = home + "/hub/user-redirect/git-pull";
                 log("Updated Hub URL to: " + activeHubUrl);
                 refreshRocketLinks();
             }
@@ -88,19 +89,21 @@ const DYNAMIC_SCRIPT = `
             });
     }
 
+    function cleanRoutePath(p) {
+        p = p || '';
+        if (p.startsWith('/hackathon-notebooks')) p = p.substring(20);
+        while (p.startsWith('/')) p = p.substring(1);
+        while (p.endsWith('/')) p = p.substring(0, p.length - 1);
+        if (p.endsWith('.html')) p = p.substring(0, p.length - 5);
+        return p;
+    }
+
     function getCatalogItemForCurrentPage() {
         if (!catalogNotebooks || !catalogNotebooks.length) return null;
-        let currentPath = window.location.pathname
-            .replace(/^\/hackathon-notebooks\//, '')
-            .replace(/^\//, '')
-            .replace(/\/$/, '')
-            .replace(/\.html$/, '');
+        const currentPath = cleanRoutePath(window.location.pathname);
 
         return catalogNotebooks.find(item => {
-            let itemLink = (item.link || '')
-                .replace(/^\//, '')
-                .replace(/\/$/, '')
-                .replace(/\.html$/, '');
+            const itemLink = cleanRoutePath(item.link);
             return itemLink === currentPath;
         });
     }
@@ -120,10 +123,19 @@ const DYNAMIC_SCRIPT = `
         } catch (e) { return null; }
     }
 
+    function getHostDomain(url) {
+        try {
+            return new URL(url).host;
+        } catch (e) {
+            const parts = url.split('/');
+            return parts[2] || url;
+        }
+    }
+
     function getLaunchUrl() {
         const item = getCatalogItemForCurrentPage();
         if (item && item.gitpuller) {
-            const hostDomain = activeHubUrl.replace(/^https?:\\/\\//, '').replace(/\\/.*$/, '');
+            const hostDomain = getHostDomain(activeHubUrl);
             return item.gitpuller.replace('{JHUB_HOST}', hostDomain);
         }
 
