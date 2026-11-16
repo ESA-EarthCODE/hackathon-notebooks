@@ -1,3 +1,6 @@
 [submodule "external_notebooks/polar"]
 	path = external_notebooks/polar
 	url = git@github.com:ESA-EarthCODE/polar_hackathon.git
+[submodule "external_notebooks/ocean"]
+	path = external_notebooks/ocean
+	url = git@github.com:ESA-EarthCODE/ocean_hackathon.git
