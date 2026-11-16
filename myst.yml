@@ -1,15 +1,14 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
-  id: feb2375d-3838-4365-bbd7-f43d501cdcbe
-  title: "EOxHub Notebooks"
-  subject: "Notebook examples"
-  description: "Collection of examples for EOxHub Workspaces"
+  title: "EarthCODE Hackathon Notebooks"
+  subject: "Hackathon Notebooks"
+  description: "Collection of notebook examples from EarthCODE hackathons"
   # title:
   # description:
   # keywords: []
   # authors: []
-  github: https://github.com/eoxhub-workspaces/eoxhub-notebooks
+  github: https://github.com/ESA-EarthCODE/hackathon-notebooks
   # This disables the "Launch" (Rocket) button entirely
   launch: false
   # You might also want to disable specific sub-features if launch: false doesn't catch them all
@@ -17,10 +16,10 @@ project:
   colab: false
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
 site:
-  template: book-theme
+  template: https://github.com/jupyter-book/myst-theme/releases/download/myst-to-react%401.4.1/book-theme.zip
   options:
     folders: true
-    hide_toc: true
+    hide_toc: false
     hide_footer_links: true
     style: _static/custom.css
   # options:
