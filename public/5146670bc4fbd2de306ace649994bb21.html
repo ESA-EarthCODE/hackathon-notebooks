@@ -1,0 +1,572 @@
+<div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in notebooks */
+
+:root {
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base rgba(0, 0, 0, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, white)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 15))
+  );
+}
+
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.vscode-dark {
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base, rgba(255, 255, 255, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, #111111)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 15))
+  );
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+  line-height: 1.6;
+  padding-bottom: 4px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.xr-header {
+  border-bottom: solid 1px var(--xr-border-color);
+  margin-bottom: 4px;
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-obj-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type,
+.xr-group-box-contents > label {
+  color: var(--xr-font-color2);
+  display: block;
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item > input,
+.xr-group-box-contents > input,
+.xr-array-wrap > input {
+  display: block;
+  opacity: 0;
+  height: 0;
+  margin: 0;
+}
+
+.xr-section-item > input + label,
+.xr-var-item > input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item > input:enabled + label,
+.xr-var-item > input:enabled + label,
+.xr-array-wrap > input:enabled + label,
+.xr-group-box-contents > input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item > input:focus-visible + label,
+.xr-var-item > input:focus-visible + label,
+.xr-array-wrap > input:focus-visible + label,
+.xr-group-box-contents > input:focus-visible + label {
+  outline: auto;
+}
+
+.xr-section-item > input:enabled + label:hover,
+.xr-var-item > input:enabled + label:hover,
+.xr-array-wrap > input:enabled + label:hover,
+.xr-group-box-contents > input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.xr-section-summary > em {
+  font-weight: normal;
+}
+
+.xr-span-grid {
+  grid-column-end: -1;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.3em;
+}
+
+.xr-group-box-contents > input:checked + label > span {
+  display: inline-block;
+  padding-left: 0.6em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: "►";
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: "▼";
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details,
+.xr-group-box-contents > label {
+  padding-top: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in ~ .xr-section-details {
+  display: none;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-children {
+  display: inline-grid;
+  grid-template-columns: 100%;
+  grid-column: 1 / -1;
+  padding-top: 4px;
+}
+
+.xr-group-box {
+  display: inline-grid;
+  grid-template-columns: 0px 30px auto;
+}
+
+.xr-group-box-vline {
+  grid-column-start: 1;
+  border-right: 0.2em solid;
+  border-color: var(--xr-border-color);
+  width: 0px;
+}
+
+.xr-group-box-hline {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  height: 1em;
+  width: 26px;
+  border-bottom: 0.2em solid;
+  border-color: var(--xr-border-color);
+}
+
+.xr-group-box-contents {
+  grid-column-start: 3;
+  padding-bottom: 4px;
+}
+
+.xr-group-box-contents > label::before {
+  content: "📂";
+  padding-right: 0.3em;
+}
+
+.xr-group-box-contents > input:checked + label::before {
+  content: "📁";
+}
+
+.xr-group-box-contents > input:checked + label {
+  padding-bottom: 0px;
+}
+
+.xr-group-box-contents > input:checked ~ .xr-sections {
+  display: none;
+}
+
+.xr-group-box-contents > input + label > span {
+  display: none;
+}
+
+.xr-group-box-ellipsis {
+  font-size: 1.4em;
+  font-weight: 900;
+  color: var(--xr-font-color2);
+  letter-spacing: 0.15em;
+  cursor: default;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: "(";
+}
+
+.xr-dim-list:after {
+  content: ")";
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ",";
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  border-color: var(--xr-background-color-row-odd);
+  margin-bottom: 0;
+  padding-top: 2px;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+  border-color: var(--xr-background-color-row-even);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  border-top: 2px dotted var(--xr-background-color);
+  padding-bottom: 20px !important;
+  padding-top: 10px !important;
+}
+
+.xr-var-attrs-in + label,
+.xr-var-data-in + label,
+.xr-index-data-in + label {
+  padding: 0 1px;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-data > pre,
+.xr-index-data > pre,
+.xr-var-data > table > tbody > tr {
+  background-color: transparent !important;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.xr-var-attrs-in:checked + label > .xr-icon-file-text2,
+.xr-var-data-in:checked + label > .xr-icon-database,
+.xr-index-data-in:checked + label > .xr-icon-database {
+  color: var(--xr-font-color0);
+  filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
+  stroke-width: 0.8px;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 315kB
+Dimensions:           (row: 81, cell: 81)
+Coordinates:
+    time              (row, cell) datetime64[ns] 52kB ...
+    lat               (row, cell) float32 26kB ...
+    lon               (row, cell) float32 26kB ...
+Dimensions without coordinates: row, cell
+Data variables:
+    model_speed       (row, cell) float32 26kB ...
+    model_dir         (row, cell) float32 26kB ...
+    ice_prob          (row, cell) float32 26kB ...
+    ice_age           (row, cell) float32 26kB ...
+    wvc_quality_flag  (row, cell) float64 52kB ...
+    wind_speed        (row, cell) float32 26kB ...
+    wind_dir          (row, cell) float32 26kB ...
+Attributes: (12/81)
+    title:                                      ScatSat-1 OSCAT Level 2 25.0 ...
+    title_short_name:                           OSCAT-L2-25km
+    Conventions:                                CF-1.4
+    institution:                                EUMETSAT/OSI SAF/KNMI
+    source:                                     ScatSat-1 OSCAT
+    software_identification_level_1:            2202
+    ...                                         ...
+    publisher_email:                            cersat@ifremer.fr
+    processing_software:                        Cersat/Cerbere 1.0
+    geospatial_lat_units:                       degrees
+    geospatial_lon_units:                       degrees
+    geospatial_vertical_units:                  meters above mean sea level
+    geospatial_vertical_positive:               up</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-b24beb06-2ac8-4a3e-ac77-61b1f6406ae6' class='xr-section-summary-in' type='checkbox' disabled /><label for='section-b24beb06-2ac8-4a3e-ac77-61b1f6406ae6' class='xr-section-summary'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span>row</span>: 81</li><li><span>cell</span>: 81</li></ul></div></li><li class='xr-section-item'><input id='section-bc548bcd-116a-4fd9-9a6a-aedaf6f3fce5' class='xr-section-summary-in' type='checkbox' checked /><label for='section-bc548bcd-116a-4fd9-9a6a-aedaf6f3fce5' class='xr-section-summary' title='Expand/collapse section'>Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>time</span></div><div class='xr-var-dims'>(row, cell)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-8d49ae18-6c67-4971-bb9e-8d003b7e4880' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8d49ae18-6c67-4971-bb9e-8d003b7e4880' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2679eb46-e67c-41a3-9514-114c8e67a4d2' class='xr-var-data-in' type='checkbox'><label for='data-2679eb46-e67c-41a3-9514-114c8e67a4d2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>2147483647.0</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>authority :</span></dt><dd>CF-1.11, ACDD-1.3</dd></dl></div><div class='xr-var-data'><pre>[6561 values with dtype=datetime64[ns]]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lat</span></div><div class='xr-var-dims'>(row, cell)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-b0c545e8-f8ff-4c8e-8006-72f2d8b679fc' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b0c545e8-f8ff-4c8e-8006-72f2d8b679fc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d36dc846-0205-4bc0-becc-9c3838493bc7' class='xr-var-data-in' type='checkbox'><label for='data-d36dc846-0205-4bc0-becc-9c3838493bc7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>valid_min :</span></dt><dd>-9e+06</dd><dt><span>valid_max :</span></dt><dd>9e+06</dd><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>authority :</span></dt><dd>CF-1.11, ACDD-1.3</dd><dt><span>valid_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>[6561 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lon</span></div><div class='xr-var-dims'>(row, cell)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-469251e3-d4d1-46ea-a231-7b0ed6de0887' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-469251e3-d4d1-46ea-a231-7b0ed6de0887' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3775469d-4e4c-4dc1-85fb-55bed671e1e4' class='xr-var-data-in' type='checkbox'><label for='data-3775469d-4e4c-4dc1-85fb-55bed671e1e4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>3.6e+07</dd><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>authority :</span></dt><dd>CF-1.11, ACDD-1.3</dd><dt><span>valid_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>[6561 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-225a3d02-5be1-4cf5-82fb-8b3863e30d1d' class='xr-section-summary-in' type='checkbox' checked /><label for='section-225a3d02-5be1-4cf5-82fb-8b3863e30d1d' class='xr-section-summary' title='Expand/collapse section'>Data variables: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>model_speed</span></div><div class='xr-var-dims'>(row, cell)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-fe14e60e-a274-4b4f-8399-d3b520c0747e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fe14e60e-a274-4b4f-8399-d3b520c0747e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-19e5671e-a43b-46e6-b952-1eb87e3a72ff' class='xr-var-data-in' type='checkbox'><label for='data-19e5671e-a43b-46e6-b952-1eb87e3a72ff' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>5000.0</dd><dt><span>long_name :</span></dt><dd>model wind speed at 10 m</dd><dt><span>units :</span></dt><dd>m s-1</dd></dl></div><div class='xr-var-data'><pre>[6561 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>model_dir</span></div><div class='xr-var-dims'>(row, cell)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-982c3d61-0a18-4326-988d-3c02488fe5e6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-982c3d61-0a18-4326-988d-3c02488fe5e6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f16fc3a9-c54d-42ed-a1ec-3e5be945b32e' class='xr-var-data-in' type='checkbox'><label for='data-f16fc3a9-c54d-42ed-a1ec-3e5be945b32e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>3600.0</dd><dt><span>long_name :</span></dt><dd>model wind direction at 10 m</dd><dt><span>units :</span></dt><dd>degree</dd></dl></div><div class='xr-var-data'><pre>[6561 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ice_prob</span></div><div class='xr-var-dims'>(row, cell)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-27467920-9d3e-4bcb-9b74-694848f68bab' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-27467920-9d3e-4bcb-9b74-694848f68bab' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-bbaab233-5d4d-422c-b295-75a2304213db' class='xr-var-data-in' type='checkbox'><label for='data-bbaab233-5d4d-422c-b295-75a2304213db' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>1000.0</dd><dt><span>long_name :</span></dt><dd>ice probability</dd><dt><span>units :</span></dt><dd>1</dd></dl></div><div class='xr-var-data'><pre>[6561 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ice_age</span></div><div class='xr-var-dims'>(row, cell)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-085c41c0-fac6-4d09-a29a-2d831b2e65c6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-085c41c0-fac6-4d09-a29a-2d831b2e65c6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fd33ba34-fbb5-4294-b485-040280bfbcff' class='xr-var-data-in' type='checkbox'><label for='data-fd33ba34-fbb5-4294-b485-040280bfbcff' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>valid_min :</span></dt><dd>-5000.0</dd><dt><span>valid_max :</span></dt><dd>5000.0</dd><dt><span>long_name :</span></dt><dd>ice age (a-parameter)</dd><dt><span>units :</span></dt><dd>dB</dd></dl></div><div class='xr-var-data'><pre>[6561 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>wvc_quality_flag</span></div><div class='xr-var-dims'>(row, cell)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-09487c53-74ca-454e-aeaa-4a4548e60119' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-09487c53-74ca-454e-aeaa-4a4548e60119' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c238ebcd-4fb6-4312-8db5-8034998c02bb' class='xr-var-data-in' type='checkbox'><label for='data-c238ebcd-4fb6-4312-8db5-8034998c02bb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>8388607.0</dd><dt><span>long_name :</span></dt><dd>wind vector cell quality</dd><dt><span>flag_masks :</span></dt><dd>[     64     128     256     512    1024    2048    4096    8192   16384
+   32768   65536  131072  262144  524288 1048576 2097152 4194304]</dd><dt><span>flag_meanings :</span></dt><dd>distance_to_gmf_too_large data_are_redundant no_meteorological_background_used rain_detected rain_flag_not_usable small_wind_less_than_or_equal_to_3_m_s large_wind_greater_than_30_m_s wind_inversion_not_successful some_portion_of_wvc_is_over_ice some_portion_of_wvc_is_over_land variational_quality_control_fails knmi_quality_control_fails product_monitoring_event_flag product_monitoring_not_used any_beam_noise_content_above_threshold poor_azimuth_diversity not_enough_good_sigma0_for_wind_retrieval</dd></dl></div><div class='xr-var-data'><pre>[6561 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>wind_speed</span></div><div class='xr-var-dims'>(row, cell)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-2590e1c9-7952-4231-8f63-b4d9efaeda91' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2590e1c9-7952-4231-8f63-b4d9efaeda91' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c318d723-be46-41a8-b5f6-c78160cd9384' class='xr-var-data-in' type='checkbox'><label for='data-c318d723-be46-41a8-b5f6-c78160cd9384' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>5000.0</dd><dt><span>long_name :</span></dt><dd>wind speed at 10 m</dd><dt><span>units :</span></dt><dd>m s-1</dd></dl></div><div class='xr-var-data'><pre>[6561 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>wind_dir</span></div><div class='xr-var-dims'>(row, cell)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-4965f1c7-a96a-48a9-bde2-f4b93afe3318' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4965f1c7-a96a-48a9-bde2-f4b93afe3318' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f549eb74-b330-4261-a764-6ea97f41692b' class='xr-var-data-in' type='checkbox'><label for='data-f549eb74-b330-4261-a764-6ea97f41692b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>3600.0</dd><dt><span>long_name :</span></dt><dd>wind direction at 10 m</dd><dt><span>units :</span></dt><dd>degree</dd></dl></div><div class='xr-var-data'><pre>[6561 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3b1b721f-385a-4b54-abaa-67c00a0f5fc8' class='xr-section-summary-in' type='checkbox' /><label for='section-3b1b721f-385a-4b54-abaa-67c00a0f5fc8' class='xr-section-summary' title='Expand/collapse section'>Attributes: <span>(81)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>title :</span></dt><dd>ScatSat-1 OSCAT Level 2 25.0 km Ocean Surface Wind Vector Product</dd><dt><span>title_short_name :</span></dt><dd>OSCAT-L2-25km</dd><dt><span>Conventions :</span></dt><dd>CF-1.4</dd><dt><span>institution :</span></dt><dd>EUMETSAT/OSI SAF/KNMI</dd><dt><span>source :</span></dt><dd>ScatSat-1 OSCAT</dd><dt><span>software_identification_level_1 :</span></dt><dd>2202</dd><dt><span>instrument_calibration_version :</span></dt><dd>0</dd><dt><span>software_identification_wind :</span></dt><dd>2202</dd><dt><span>pixel_size_on_horizontal :</span></dt><dd>25.0 km</dd><dt><span>service_type :</span></dt><dd>N/A</dd><dt><span>processing_type :</span></dt><dd>O</dd><dt><span>contents :</span></dt><dd>ovw</dd><dt><span>granule_name :</span></dt><dd>oscat_20180202_175036_scasa1_07171_o_250_ovw_l2.bufr.nc</dd><dt><span>processing_level :</span></dt><dd>L2</dd><dt><span>orbit_number :</span></dt><dd>7171</dd><dt><span>equator_crossing_longitude :</span></dt><dd>  61.612</dd><dt><span>equator_crossing_date :</span></dt><dd>2018-02-02</dd><dt><span>equator_crossing_time :</span></dt><dd>16:38:29</dd><dt><span>rev_orbit_period :</span></dt><dd>5958.6</dd><dt><span>orbit_inclination :</span></dt><dd>98.3</dd><dt><span>history :</span></dt><dd>N/A</dd><dt><span>references :</span></dt><dd>Oceansat-2 Wind Product User Manual, http://www.osi-saf.org/, http://www.knmi.nl/scatterometer/</dd><dt><span>comment :</span></dt><dd>Orbit period and inclination are constant values. All wind directions in oceanographic convention (0 deg. flowing North)</dd><dt><span>creation_date :</span></dt><dd>2022-03-03</dd><dt><span>creation_time :</span></dt><dd>10:41:08</dd><dt><span>time_coverage_start :</span></dt><dd>2018-02-02T17:50:36Z</dd><dt><span>time_coverage_end :</span></dt><dd>2018-02-02T18:44:47Z</dd><dt><span>cdm_data_type :</span></dt><dd>swath</dd><dt><span>__id :</span></dt><dd>SCATSAT1-L2-ICM_track00001586</dd><dt><span>__title :</span></dt><dd>child product derived from oscat_20180202_175036_scasa1_07171_o_250_ovw_l2.bufr.nc over felyx site track00001586</dd><dt><span>__summary :</span></dt><dd>child product created by felyx on 20251013T075013 from /home/datawork-cersat-public/provider/maxss/products/satellite/l2/scatterometer/scatsat-1/scatsat-1/2018/033/oscat_20180202_175036_scasa1_07171_o_250_ovw_l2.bufr.nc provided by MAXSS. Contains data over track00001586 (a polygon with bounds from 35.289595280986816 to 47.240404719013185 degrees North and from 2.2275952809868134 to 14.178404719013185 degrees East).</dd><dt><span>__history :</span></dt><dd>Created on 20251013T075013 with /home/datawork-cersat-public/provider/maxss/products/satellite/l2/scatterometer/scatsat-1/scatsat-1/2018/033/oscat_20180202_175036_scasa1_07171_o_250_ovw_l2.bufr.nc</dd><dt><span>__date_created :</span></dt><dd>2025-10-13T07:50:13.573932</dd><dt><span>__date_modified :</span></dt><dd>2025-10-13T07:50:13.573932</dd><dt><span>__keywords :</span></dt><dd></dd><dt><span>__acknowledgement :</span></dt><dd></dd><dt><span>__license :</span></dt><dd></dd><dt><span>__format_version :</span></dt><dd>felyx 2.0</dd><dt><span>__creator_name :</span></dt><dd></dd><dt><span>__creator_email :</span></dt><dd></dd><dt><span>__creator_url :</span></dt><dd></dd><dt><span>__references :</span></dt><dd></dd><dt><span>__time_coverage_resolution :</span></dt><dd></dd><dt><span>__source :</span></dt><dd>oscat_20180202_175036_scasa1_07171_o_250_ovw_l2.bufr.nc</dd><dt><span>__source_slices :</span></dt><dd>{&#x27;row&#x27;: slice(618, 699, None), &#x27;cell&#x27;: slice(-40, 41, None)}</dd><dt><span>__site_id :</span></dt><dd>track00001586</dd><dt><span>__site_name :</span></dt><dd>track00001586</dd><dt><span>__site_geometry :</span></dt><dd>POLYGON ((14.178404719013185 41.265, 14.149631512046891 40.679307917130565, 14.063588992860133 40.099256369191025, 13.921105797948304 39.530431569676466, 13.723554118367637 38.97831161235748, 13.472836484785237 38.44821371424252, 13.171367445068693 37.94524300787141, 12.822050310870221 37.47424337609828, 12.42824919714832 37.03975080285168, 11.99375662390172 36.64594968912978, 11.522756992128587 36.29663255493131, 11.019786285757483 35.99516351521476, 10.48968838764252 35.74444588163236, 9.937568430323534 35.546894202051696, 9.368743630808975 35.40441100713987, 8.788692082869435 35.31836848795311, 8.203 35.289595280986816, 7.6173079171305655 35.31836848795311, 7.0372563691910255 35.40441100713987, 6.468431569676467 35.546894202051696, 5.916311612357479 35.74444588163236, 5.3862137142425155 35.99516351521476, 4.883243007871414 36.29663255493131, 4.41224337609828 36.64594968912978, 3.9777508028516797 37.03975080285168, 3.5839496891297786 37.47424337609828, 3.2346325549313057 37.94524300787141, 2.9331635152147637 38.44821371424251, 2.6824458816323604 38.97831161235748, 2.484894202051696 39.530431569676466, 2.342411007139866 40.099256369191025, 2.2563684879531065 40.679307917130565, 2.2275952809868134 41.265, 2.2563684879531065 41.850692082869436, 2.342411007139866 42.430743630808976, 2.484894202051696 42.999568430323535, 2.6824458816323595 43.55168838764252, 2.933163515214763 44.08178628575748, 3.234632554931305 44.58475699212858, 3.5839496891297777 45.05575662390172, 3.977750802851678 45.49024919714832, 4.412243376098276 45.88405031087022, 4.883243007871413 46.233367445068694, 5.3862137142425155 46.53483648478524, 5.916311612357475 46.78555411836764, 6.468431569676465 46.983105797948305, 7.037256369191022 47.12558899286013, 7.617307917130566 47.21163151204689, 8.202999999999998 47.240404719013185, 8.78869208286943 47.21163151204689, 9.368743630808975 47.12558899286013, 9.937568430323532 46.983105797948305, 10.489688387642522 46.78555411836764, 11.019786285757483 46.53483648478524, 11.522756992128583 46.233367445068694, 11.99375662390172 45.88405031087022, 12.428249197148318 45.49024919714832, 12.822050310870218 45.05575662390172, 13.171367445068693 44.58475699212859, 13.472836484785233 44.08178628575749, 13.723554118367637 43.55168838764253, 13.921105797948304 42.999568430323535, 14.063588992860133 42.430743630808976, 14.149631512046891 41.850692082869436, 14.178404719013185 41.265))</dd><dt><span>__dataset_id :</span></dt><dd>SCATSAT1-L2-ICM</dd><dt><span>__dataset_name :</span></dt><dd>SCATSAT1-L2-ICM</dd><dt><span>__site_collection_id :</span></dt><dd>storm</dd><dt><span>__site_collection_name :</span></dt><dd>storm</dd><dt><span>__site_collection_summary :</span></dt><dd>Storm track collection assembled by MEDICANES project team</dd><dt><span>__geospatial_lon_min :</span></dt><dd>2.2275952809868134</dd><dt><span>__geospatial_lon_max :</span></dt><dd>14.178404719013185</dd><dt><span>__geospatial_lat_min :</span></dt><dd>35.289595280986816</dd><dt><span>__geospatial_lat_max :</span></dt><dd>47.240404719013185</dd><dt><span>__percentage_coverage_of_site_by_miniprod :</span></dt><dd>0</dd><dt><span>__time_coverage_start :</span></dt><dd>2018-02-02T18:28:24Z</dd><dt><span>__time_coverage_end :</span></dt><dd>2018-02-02T18:33:17Z</dd><dt><span>__source_time_coverage_end :</span></dt><dd>2018-02-02T18:44:47Z</dd><dt><span>__source_time_coverage_start :</span></dt><dd>2018-02-02T17:50:36Z</dd><dt><span>__site_lat :</span></dt><dd>41.265</dd><dt><span>__site_lon :</span></dt><dd>8.203</dd><dt><span>__site_time :</span></dt><dd>2018-02-02T19:00:00</dd><dt><span>__time_difference :</span></dt><dd>1720</dd><dt><span>__distance :</span></dt><dd>508715</dd><dt><span>__source_center_index :</span></dt><dd>{&#x27;row&#x27;: 658, &#x27;cell&#x27;: 0}</dd><dt><span>naming_authority :</span></dt><dd>fr.ifremer.cersat</dd><dt><span>Metadata_Conventions :</span></dt><dd>Climate and Forecast (CF) 1.7, Attribute Convention for Data Discovery (ACDD) 1.3</dd><dt><span>standard_name_vocabulary :</span></dt><dd>NetCDF Climate and Forecast (CF) Metadata Convention</dd><dt><span>keywords_vocabulary :</span></dt><dd>NASA Global Change Master Directory (GCMD) Science Keywords</dd><dt><span>institution_abbreviation :</span></dt><dd>ifremer/cersat</dd><dt><span>publisher_name :</span></dt><dd>ifremer/cersat</dd><dt><span>publisher_url :</span></dt><dd>http://cersat.ifremer.fr</dd><dt><span>publisher_email :</span></dt><dd>cersat@ifremer.fr</dd><dt><span>processing_software :</span></dt><dd>Cersat/Cerbere 1.0</dd><dt><span>geospatial_lat_units :</span></dt><dd>degrees</dd><dt><span>geospatial_lon_units :</span></dt><dd>degrees</dd><dt><span>geospatial_vertical_units :</span></dt><dd>meters above mean sea level</dd><dt><span>geospatial_vertical_positive :</span></dt><dd>up</dd></dl></div></li></ul></div></div>
