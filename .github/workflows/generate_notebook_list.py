@@ -212,6 +212,33 @@ def extract_title_from_first_header(nb):
                     return match.group(1).strip()
     return None
 
+def extract_description(nb, meta):
+    """Extract description from frontmatter or first non-header text paragraph in notebook markdown cells."""
+    if meta.get("description"):
+        return str(meta["description"]).strip()
+
+    for cell in nb.cells:
+        if cell.cell_type == "markdown":
+            text = cell.source
+            text = re.sub(r'```[a-zA-Z]*\n[\s\S]*?```', '', text)
+            lines = text.splitlines()
+            paragraphs = []
+            for line in lines:
+                l = line.strip()
+                if not l or l.startswith('#') or l.startswith(':::') or l.startswith('---') or l.startswith('<'):
+                    continue
+                l = re.sub(r'!\[.*?\]\(.*?\)', '', l)
+                l = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', l)
+                l = re.sub(r'[\*_`#~]', '', l).strip()
+                if l:
+                    paragraphs.append(l)
+            if paragraphs:
+                full_desc = ' '.join(paragraphs)
+                if len(full_desc) > 160:
+                    full_desc = full_desc[:157].rsplit(' ', 1)[0] + '...'
+                return full_desc
+    return ""
+
 def get_submodule_repo_title(sub_path, git_info):
     """Determine a human-readable title for the submodule repository."""
     for readme_name in ["README.md", "README.MD", "readme.md"]:
@@ -302,7 +329,7 @@ def collect_notebooks():
                     tags = extract_tags(rel_path_in_repo, meta)
                     catalog.append({
                         "title": meta.get("title", extract_title_from_first_header(nb) or os.path.splitext(file)[0].replace("_", " ")),
-                        "description": meta.get("description", ""),
+                        "description": extract_description(nb, meta),
                         "metadata": meta,
                         "image": image,
                         "link": myst_url_sanitation(rel_path.replace(".ipynb", "")),
@@ -346,7 +373,7 @@ def collect_notebooks():
                     tags = extract_tags(repo_path, meta)
                     catalog.append({
                         "title": meta.get("title", extract_title_from_first_header(nb) or os.path.splitext(file)[0].replace("_", " ")),
-                        "description": meta.get("description", ""),
+                        "description": extract_description(nb, meta),
                         "metadata": meta,
                         "image": image,
                         "link": myst_url_sanitation(rel_path.replace(".ipynb", "")),
