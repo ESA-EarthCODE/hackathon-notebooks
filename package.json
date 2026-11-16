@@ -4,11 +4,11 @@
   "description": "MyST project with custom script injection",
   "scripts": {
     "start": "myst start",
-    "build": "myst build --html && node inject-scripts.js && python .github/workflows/generate_notebook_list.py && cp notebooks.json _build/html/notebooks.json && cp index.html _build/html/index.html && cp _static/eoxhub_jupyter.jpg _build/html/build/_assets/previews && touch _build/html/.nojekyll",
+    "build": "myst build --site && mkdir -p _build/html && cp -r _build/site/* _build/html/ 2>/dev/null || true && node inject-scripts.js && python3 .github/workflows/generate_notebook_list.py && cp notebooks.json _build/html/notebooks.json && cp index.html _build/html/index.html && cp _static/eoxhub_jupyter.jpg _build/html/build/_assets/previews 2>/dev/null || true && touch _build/html/.nojekyll",
     "clean": "myst clean"
   },
   "devDependencies": {
-    "mystmd": "latest"
+    "mystmd": "^1.8.0"
   },
   "engines": {
     "node": ">=16.0.0"

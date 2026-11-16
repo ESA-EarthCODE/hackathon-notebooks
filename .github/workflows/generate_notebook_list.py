@@ -192,11 +192,15 @@ def extract_frontmatter(notebook_path):
     return {}
 
 def myst_url_sanitation(url):
-    # reverse engineering the myst url sanitation
-    clean_url = url.replace("_-_","-").replace("_", "-").replace(" ", "-").replace("..", "").replace(":", "").replace("'", "").replace('"', "").lower()
+    clean_url = url.replace(".ipynb", "").replace(".md", "").replace(".MD", "")
     parts = clean_url.split("/")
-    cut_url = "/".join(parts[0:-1] + [parts[-1][:50]])
-    return cut_url
+    clean_parts = []
+    for part in parts:
+        cleaned = re.sub(r'^\d+[_\-]', '', part).lower()
+        cleaned = re.sub(r'[^a-z0-9]+', '-', cleaned).strip('-')
+        if cleaned:
+            clean_parts.append(cleaned)
+    return "/".join(clean_parts)
 
 def extract_title_from_first_header(nb):
     for cell in nb.cells:
@@ -208,87 +212,152 @@ def extract_title_from_first_header(nb):
                     return match.group(1).strip()
     return None
 
+def get_submodule_repo_title(sub_path, git_info):
+    """Determine a human-readable title for the submodule repository."""
+    for readme_name in ["README.md", "README.MD", "readme.md"]:
+        readme_path = os.path.join(sub_path, readme_name)
+        if os.path.exists(readme_path):
+            try:
+                with open(readme_path, "r", encoding="utf-8") as f:
+                    for line in f:
+                        match = re.match(r'^\s*#\s+(.*)', line)
+                        if match:
+                            title = match.group(1).strip()
+                            title = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', title)
+                            if title:
+                                return title
+            except Exception:
+                pass
+    repo_name = git_info.get("repo") or os.path.basename(sub_path)
+    return repo_name.replace("-", " ").replace("_", " ").title()
+
+def extract_tags(rel_path_in_repo, meta):
+    """Extract tags from directory hierarchy (stripping number prefixes) and notebook metadata."""
+    tags = []
+    meta_tags = meta.get("tags") or meta.get("keywords") or []
+    if isinstance(meta_tags, list):
+        for t in meta_tags:
+            if isinstance(t, str) and t.strip():
+                tags.append(t.strip())
+
+    dir_name = os.path.dirname(rel_path_in_repo)
+    if dir_name:
+        parts = pathlib.Path(dir_name).parts
+        for part in parts:
+            if part in IGNORE_FOLDERS or part in [".", ""]:
+                continue
+            cleaned_part = re.sub(r'^\d+[_\-\s]*', '', part)
+            if cleaned_part:
+                tag_label = cleaned_part.replace("_", " ").replace("-", " ").title()
+                if tag_label and tag_label not in tags:
+                    tags.append(tag_label)
+
+    return tags
+
+def discover_submodules(submodules_root, submodules_map):
+    """Find all submodule directories under submodules_root."""
+    submodule_paths = []
+    if not os.path.exists(submodules_root):
+        return submodule_paths
+
+    for root, dirs, _ in os.walk(submodules_root):
+        rel_to_project = os.path.normpath(os.path.relpath(root, ROOT_DIR))
+        is_sub = rel_to_project in submodules_map or os.path.exists(os.path.join(root, ".git"))
+        if is_sub and root != submodules_root:
+            submodule_paths.append(root)
+            dirs.clear()
+            continue
+
+        if root == submodules_root:
+            for d in list(dirs):
+                child_path = os.path.join(root, d)
+                child_rel = os.path.normpath(os.path.relpath(child_path, ROOT_DIR))
+                if child_rel in submodules_map or os.path.exists(os.path.join(child_path, ".git")):
+                    submodule_paths.append(child_path)
+                    dirs.remove(d)
+
+    return submodule_paths
+
 def collect_notebooks():
     catalog = []
-    git_url = get_git_remote_info(ROOT_DIR)["url"]
+    project_git_info = get_git_remote_info(ROOT_DIR)
+    git_url = project_git_info["url"]
+    project_repo_title = project_git_info.get("repo", "Hackathon Notebooks").replace("-", " ").replace("_", " ").title()
     submodules = parse_gitmodules()
 
     # --- Local notebooks
     local_path = os.path.join(ROOT_DIR, NOTEBOOK_DIR)
-    for dirpath, _, filenames in os.walk(local_path):
-        if any(ignored in dirpath for ignored in IGNORE_FOLDERS):
-            continue
-        for file in filenames:
-            if file.endswith(".ipynb"):
-                abs_path = os.path.join(dirpath, file)
-                rel_path = os.path.relpath(abs_path, ROOT_DIR).replace("\\", "/")
-                meta = extract_frontmatter(abs_path)
-                nb = nbformat.read(abs_path, as_version=4)
-                image = meta.get("image") or extract_last_image(nb, rel_path) or FALLBACK_IMAGE
-                topic = os.path.basename(os.path.dirname(rel_path)) if os.path.dirname(rel_path) != NOTEBOOK_DIR else "General"
-                # try to prettify name
-                topic = topic.replace("_", " ").title()
-                # TODO: need to extract available branch
-                catalog.append({
-                    "title": meta.get("title", extract_title_from_first_header(nb) or os.path.splitext(file)[0].replace("_", " ")),
-                    "description": meta.get("description", ""),
-                    "metadata": meta,
-                    "image": image,
-                    "link": myst_url_sanitation(rel_path.replace(".ipynb", "")),
-                    "topic": topic,
-                    "org": DEF_ORG,
-                    "repo": DEF_REPO,
-                    "source": "local",
-                    "path": rel_path,
-                    "gitpuller": f"https://{{JHUB_HOST}}/hub/user-redirect/git-pull?repo={git_url}&urlpath=lab/tree/{DEF_REPO}/{rel_path}&branch=main",
-                })
+    if os.path.exists(local_path):
+        for dirpath, _, filenames in os.walk(local_path):
+            if any(ignored in dirpath for ignored in IGNORE_FOLDERS):
+                continue
+            for file in filenames:
+                if file.endswith(".ipynb"):
+                    abs_path = os.path.join(dirpath, file)
+                    rel_path = os.path.relpath(abs_path, ROOT_DIR).replace("\\", "/")
+                    rel_path_in_repo = os.path.relpath(abs_path, local_path).replace("\\", "/")
+                    meta = extract_frontmatter(abs_path)
+                    nb = nbformat.read(abs_path, as_version=4)
+                    image = meta.get("image") or extract_last_image(nb, rel_path) or FALLBACK_IMAGE
+                    tags = extract_tags(rel_path_in_repo, meta)
+                    catalog.append({
+                        "title": meta.get("title", extract_title_from_first_header(nb) or os.path.splitext(file)[0].replace("_", " ")),
+                        "description": meta.get("description", ""),
+                        "metadata": meta,
+                        "image": image,
+                        "link": myst_url_sanitation(rel_path.replace(".ipynb", "")),
+                        "topic": project_repo_title,
+                        "tags": tags,
+                        "org": DEF_ORG,
+                        "repo": DEF_REPO,
+                        "source": "local",
+                        "path": rel_path,
+                        "gitpuller": f"https://{{JHUB_HOST}}/hub/user-redirect/git-pull?repo={git_url}&urlpath=lab/tree/{DEF_REPO}/{rel_path}&branch=main",
+                    })
 
     # --- Submodule notebooks
     submodules_root = os.path.join(ROOT_DIR, SUBMODULE_ROOT)
-    for group in os.listdir(submodules_root):
-        group_path = os.path.join(submodules_root, group)
-        if not os.path.isdir(group_path):
+    submodule_dirs = discover_submodules(submodules_root, submodules)
+
+    for sub_path in submodule_dirs:
+        sub_rel = os.path.relpath(sub_path, ROOT_DIR).replace("\\", "/")
+        git_info = submodules.get(os.path.normpath(sub_rel))
+        if not git_info:
+            git_info = get_git_remote_info(sub_path)
+        sub_git_url = git_info.get("url")
+        if not sub_git_url:
+            print(f"[warn] Could not determine git URL for submodule {sub_rel}, skipping")
             continue
 
-        for repo in os.listdir(group_path):
-            sub_path = os.path.join(group_path, repo)
-            if not os.path.isdir(sub_path):
-                continue
+        repo_title = get_submodule_repo_title(sub_path, git_info)
+        sub_repo_name = git_info.get("repo") or os.path.basename(sub_path)
 
-            sub_rel = os.path.relpath(sub_path, ROOT_DIR)
-            git_info = submodules.get(os.path.normpath(sub_rel))
-            if not git_info:
-                git_info = get_git_remote_info(sub_path)
-            git_url = git_info.get("url")
-            if not git_url:
-                print(f"[warn] Could not determine git URL for submodule {sub_rel}, skipping")
+        for dirpath, _, filenames in os.walk(sub_path):
+            if any(ignored in dirpath for ignored in IGNORE_FOLDERS):
                 continue
-
-            for dirpath, _, filenames in os.walk(sub_path):
-                for file in filenames:
-                    if file.endswith(".ipynb"):
-                        abs_path = os.path.join(dirpath, file)
-                        rel_path = os.path.relpath(abs_path, ROOT_DIR).replace("\\", "/")
-                        p = pathlib.Path(rel_path)
-                        repo_path = pathlib.Path(*p.parts[2:])
-                        meta = extract_frontmatter(abs_path)
-                        nb = nbformat.read(abs_path, as_version=4)
-                        image = meta.get("image") or extract_last_image(nb, rel_path) or FALLBACK_IMAGE
-                        topic = os.path.basename(os.path.dirname(repo_path))
-                        # TODO: need to extract available branch
-                        catalog.append({
-                            "title": meta.get("title", extract_title_from_first_header(nb) or os.path.splitext(file)[0].replace("_", " ")),
-                            "description": meta.get("description", ""),
-                            "metadata": meta,
-                            "image": image,
-                            "link": myst_url_sanitation(rel_path.replace(".ipynb", "")),
-                            "topic": topic,
-                            "org": git_info.get("org"),
-                            "repo": git_info.get("repo"),
-                            "source": "submodule",
-                            "path": rel_path,
-                            "gitpuller": f"https://{{JHUB_HOST}}/hub/user-redirect/git-pull?repo={git_url}&urlpath=lab/tree/{repo_path}&branch=main",
-                        })
+            for file in filenames:
+                if file.endswith(".ipynb"):
+                    abs_path = os.path.join(dirpath, file)
+                    rel_path = os.path.relpath(abs_path, ROOT_DIR).replace("\\", "/")
+                    repo_path = os.path.relpath(abs_path, sub_path).replace("\\", "/")
+                    meta = extract_frontmatter(abs_path)
+                    nb = nbformat.read(abs_path, as_version=4)
+                    image = meta.get("image") or extract_last_image(nb, rel_path) or FALLBACK_IMAGE
+                    tags = extract_tags(repo_path, meta)
+                    catalog.append({
+                        "title": meta.get("title", extract_title_from_first_header(nb) or os.path.splitext(file)[0].replace("_", " ")),
+                        "description": meta.get("description", ""),
+                        "metadata": meta,
+                        "image": image,
+                        "link": myst_url_sanitation(rel_path.replace(".ipynb", "")),
+                        "topic": repo_title,
+                        "tags": tags,
+                        "org": git_info.get("org"),
+                        "repo": sub_repo_name,
+                        "source": "submodule",
+                        "path": rel_path,
+                        "gitpuller": f"https://{{JHUB_HOST}}/hub/user-redirect/git-pull?repo={sub_git_url}&urlpath=lab/tree/{sub_repo_name}/{repo_path}&branch=main",
+                    })
 
     return catalog
 

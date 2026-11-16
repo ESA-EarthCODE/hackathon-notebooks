@@ -192,6 +192,7 @@
           titleProperty: "title",
           imageProperty: "image",
           subTitleProperty: "description",
+          tagsProperty: "tags",
           resultType: "cards", 
           aggregateResults: "topic",
           
@@ -199,7 +200,8 @@
           enableResultAction: false, 
           
           filterProperties: [
-            { "keys": ["title"], "title": "Search", "type": "text", "placeholder": "Search examples...", "expanded": true }
+            { "keys": ["title", "description"], "title": "Search", "type": "text", "placeholder": "Search examples...", "expanded": true },
+            { "key": "tags", "title": "Tags", "type": "multiselect", "expanded": true }
           ],
         });
 

@@ -4,3 +4,4 @@ _build
 dask_tutorials/wildfires/
 notebooks.json
 venv
+node_modules
