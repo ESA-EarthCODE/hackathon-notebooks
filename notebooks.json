@@ -1,7 +1,7 @@
 [
   {
     "title": "Ocean Datacube Hackathon",
-    "description": "",
+    "description": "This repository contains information and guided notebooks about the Ocean Hackathon. The core aspects of the hackathon are: 1. Marine datasets covering the...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_0_Introduction_intro_preview.png",
     "link": "external-notebooks/ocean/introduction/intro",
@@ -17,7 +17,7 @@
   },
   {
     "title": "Distributed Computing with Dask",
-    "description": "",
+    "description": "The EDC (Euro Data Cube) workspace provides Dask Gateway for scalable analysis of collections that are larger than memory. This notebook starts with a local...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_0_Introduction_Workspace_dask-gateway_preview.png",
     "link": "external-notebooks/ocean/introduction/workspace/dask-gateway",
@@ -34,7 +34,7 @@
   },
   {
     "title": "Time Series at Every Depth",
-    "description": "",
+    "description": "This notebook shows how to setup a dask cluster on the platofrm or locally to do longer-running jobs. It uses a temperature across time and depth plot as an...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_2_Datacube_3_large_area_processing_preview.png",
     "link": "external-notebooks/ocean/datacube/large-area-processing",
@@ -50,7 +50,7 @@
   },
   {
     "title": "Build a sample datacube from two datasets",
-    "description": "",
+    "description": "Explore Data This notebooks shows how to regrid and combine two datasets from different sources and with different resolutions. The first one is the...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_2_Datacube_2_build_single_cube_demo_preview.png",
     "link": "external-notebooks/ocean/datacube/build-single-cube-demo",
@@ -66,7 +66,7 @@
   },
   {
     "title": "ESA Mediterranean Sea Datacube",
-    "description": "",
+    "description": "The ESA Mediterranean Sea Datacube brings selected marine datasets onto a common 1/24\u00b0 latitude/longitude grid (EPSG:4326) for the Mediterranean Sea. The...",
     "metadata": {
       "vscode": {
         "languageId": "plaintext"
@@ -86,7 +86,7 @@
   },
   {
     "title": "Accessing the ESA Mediterranean Sea Datacube",
-    "description": "",
+    "description": "Explore Data \u00b7 Explore Data \u00b7 Explore Data \u00b7 Explore Data This notebook opens the four online stores of the ESA Mediterranean Sea Datacube and plots...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_2_Datacube_1_remote_cube_access_preview.png",
     "link": "external-notebooks/ocean/datacube/remote-cube-access",
@@ -102,7 +102,7 @@
   },
   {
     "title": "Cloud-Native Formats And Metadata",
-    "description": "",
+    "description": "Run the examples in order: Parquet -> COG -> Zarr. These notebooks show how to convert datasets into object-storage optimised formats and generate metadata...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/file-formats-and-metadata/intro",
@@ -118,7 +118,7 @@
   },
   {
     "title": "Create COGs From A Curvilinear NetCDF",
-    "description": "",
+    "description": "Depth requests are snapped to the nearest available source depth so the output filenames match actual data values.",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_3_File_formats_and_metadata_2_cog_1_cog_from_nc_preview.png",
     "link": "external-notebooks/ocean/file-formats-and-metadata/cog/cog-from-nc",
@@ -135,7 +135,7 @@
   },
   {
     "title": "Build STAC Metadata For A COG",
-    "description": "",
+    "description": "This notebook derives spatial and raster metadata from the basal-melt COG and uses it to build a STAC Item. The same pattern applies to cloud-hosted COGs:...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/file-formats-and-metadata/cog/cog-metadata",
@@ -152,7 +152,7 @@
   },
   {
     "title": "Create A COG From A GeoTIFF",
-    "description": "",
+    "description": "We check the CRS, dimensions, block layout, and nodata value before writing the COG. The source file can still be read lazily with rioxarray.",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_3_File_formats_and_metadata_2_cog_1_cog_from_tiff_preview.png",
     "link": "external-notebooks/ocean/file-formats-and-metadata/cog/cog-from-tiff",
@@ -169,7 +169,7 @@
   },
   {
     "title": "Zarr Metadata With xstac",
-    "description": "",
+    "description": "This cell reads the projected x and y coordinate limits, transforms them to WGS84, then sets the final geographic bounding box used in STAC. It also...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/file-formats-and-metadata/zarr/zarr-metadata",
@@ -186,7 +186,7 @@
   },
   {
     "title": "Convert NetCDF To Zarr",
-    "description": "",
+    "description": "This notebook converts the ice-temperature NetCDF example into a consolidated Zarr store. Zarr is useful for multidimensional arrays because chunked object...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/file-formats-and-metadata/zarr/zarr-from-nc-1",
@@ -203,7 +203,7 @@
   },
   {
     "title": "Rasterise GeoParquet To Zarr",
-    "description": "",
+    "description": "Vector datasets can be useful in combined cubes when they are rasterised onto the same grid as other variables. This notebook turns a GeoParquet polygon...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_3_File_formats_and_metadata_3_zarr_1_zarr_from_parquet(vector)_preview.png",
     "link": "external-notebooks/ocean/file-formats-and-metadata/zarr/zarr-from-parquet-vector",
@@ -220,7 +220,7 @@
   },
   {
     "title": "Convert NetCDF To Zarr - Example 2",
-    "description": "",
+    "description": "This notebook shows a more detailed example of how the so-fresh data was processed; This notebook is a direct copy of the example post-processing of a...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/file-formats-and-metadata/zarr/zarr-from-nc-2",
@@ -237,7 +237,7 @@
   },
   {
     "title": "Convert COGs To Zarr",
-    "description": "",
+    "description": "COG is excellent for individual rasters. Zarr is often better when many rasters form a logical multidimensional collection, for example one COG per depth or...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/file-formats-and-metadata/zarr/zarr-from-cog",
@@ -254,7 +254,7 @@
   },
   {
     "title": "GeoParquet STAC Metadata",
-    "description": "",
+    "description": "The asset records where the Parquet file will live and identifies it as a data asset. The href remains the original placeholder until the object-store path...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/file-formats-and-metadata/parquet/parquet-metadata",
@@ -271,7 +271,7 @@
   },
   {
     "title": "Convert A Shapefile To GeoParquet",
-    "description": "",
+    "description": "This notebook converts the supraglacial-lakes shapefile archive into GeoParquet. GeoParquet keeps geometry and CRS metadata with the table and is much...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/file-formats-and-metadata/parquet/parquet-from-shp",
@@ -288,7 +288,7 @@
   },
   {
     "title": "Convert NetCDF Point Data To GeoParquet",
-    "description": "",
+    "description": "This notebook converts the ALBATROS tide-gauge NetCDF example into GeoParquet. The important steps are to flatten the NetCDF variables into a table and...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/file-formats-and-metadata/parquet/parquet-from-nc",
@@ -305,7 +305,7 @@
   },
   {
     "title": "Intro",
-    "description": "",
+    "description": "There are multiple ways to interactivcely visualise COG files and their pyramids, a lot of which rely on some sort of http connection or local file server...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/visualizations/cog-visualisations",
@@ -321,7 +321,7 @@
   },
   {
     "title": "Visualisation",
-    "description": "",
+    "description": "Most of the datasets are part of one of the cubes, which in turn can be interactively visualised since they are in geozarr format. To open the visualisation...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/visualizations/intro",
@@ -337,7 +337,7 @@
   },
   {
     "title": "OceanSODA GeoZarr Conversion",
-    "description": "",
+    "description": "In order to display zarr files you hvae to manually build the pyramids similar to a cog file. You also have to link all of the data together, so that I...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/visualizations/geozarr-conversion",
@@ -353,7 +353,7 @@
   },
   {
     "title": "Datasets prepared for the Ocean Hackathon",
-    "description": "",
+    "description": "Each dataset has an associated notebook, linked in the access notebook column, showing how to open its assets directly from object storage. More information...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/ocean/datasets/datasets-sumary",
@@ -369,7 +369,7 @@
   },
   {
     "title": "Access WAPOSAL Waves",
-    "description": "",
+    "description": "Wave power density, zero-crossing wave period, and significant wave height product obtained along track based on Sentinel-3 A/B and Cryosat-2 altimeter data...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_waposal_access_preview.png",
     "link": "external-notebooks/ocean/datasets/waposal/access",
@@ -386,7 +386,7 @@
   },
   {
     "title": "Access 4DMED-SEA 3D Physical Fields",
-    "description": "",
+    "description": "Daily Mediterranean 3D fields of temperature, salinity and geostrophic current at 1/24\u00b0 of resolution, up to 150m-depth and from 2016 to mid 2022. Explore...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_4dmed-t-s-geo-150_access_preview.png",
     "link": "external-notebooks/ocean/datasets/4dmed-t-s-geo-150/access",
@@ -403,7 +403,7 @@
   },
   {
     "title": "COASTDyn",
-    "description": "",
+    "description": "Gridded Sea Level Anomalies (SLA)  from the application of the Multiscale Inversion of Ocean Surface Topography (MIOST) algorithm. This product provides...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_coastdyn_access_preview.png",
     "link": "external-notebooks/ocean/datasets/coastdyn/access",
@@ -420,7 +420,7 @@
   },
   {
     "title": "Accessing the MEDICANES atlas",
-    "description": "",
+    "description": "The MEDICANES atlas contains observations from different satellites over medicane events in Mediterranean Sea. All data are available at Ifremer :...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_medicanes_access_preview.png",
     "link": "external-notebooks/ocean/datasets/medicanes/access",
@@ -437,7 +437,7 @@
   },
   {
     "title": "Access Bicep",
-    "description": "",
+    "description": "Explore re-projected dataset in the Med cube The BICEP database contains multiple datasets combined into four zarr stores: 1....",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_bicep_access_preview.png",
     "link": "external-notebooks/ocean/datasets/bicep/access",
@@ -454,7 +454,7 @@
   },
   {
     "title": "access",
-    "description": "",
+    "description": "Mixed Layer Properties (MLD, N2max) reconstruction in the North Atlantic Ocean, Mediterranean sea and equatorial region using Morlenn algorithm, baseline...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_upperdyn-morlenn_access_preview.png",
     "link": "external-notebooks/ocean/datasets/upperdyn-morlenn/access",
@@ -471,7 +471,7 @@
   },
   {
     "title": "Access Atlantic Ocean Heat Content",
-    "description": "",
+    "description": "Explore re-projected dataset in the Med cube This dataset contains variables as 3D grids of ocean heat content anomalies at 1x1 resolution and monthly time...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_ocean-heat_access_preview.png",
     "link": "external-notebooks/ocean/datasets/ocean-heat/access",
@@ -488,7 +488,7 @@
   },
   {
     "title": "Access 4DMED-SEA MIOST Lagrangian Eddies",
-    "description": "",
+    "description": "Explore re-projected dataset in the Med cube This product provides the Finite-size Lyapunov Exponents derived from surface geostrophic velocities result...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_4dmed-fsle_access_preview.png",
     "link": "external-notebooks/ocean/datasets/4dmed-fsle/access",
@@ -505,7 +505,7 @@
   },
   {
     "title": "Access Scope",
-    "description": "",
+    "description": "EO4SOCIETY Website: https://eo4society.esa.int/projects/scope/ The scope project consists of four zarr cubes: - surfacecarbonatesystemv20261.zarr -...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_scope_access_preview.png",
     "link": "external-notebooks/ocean/datasets/scope/access",
@@ -522,7 +522,7 @@
   },
   {
     "title": "Access 4DMED-SEA 4DVarNet 1/8\u00b0",
-    "description": "",
+    "description": "Explore re-projected dataset in the Med cube The gridded Sea Level Anomalies (SLA) presented here result from the application of the 4DVARNET algorithm, as...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_4dmed-4dvar-8_access_preview.png",
     "link": "external-notebooks/ocean/datasets/4dmed-4dvar-8/access",
@@ -539,7 +539,7 @@
   },
   {
     "title": "Access OceanSODA-ETHZ",
-    "description": "",
+    "description": "Explore re-projected dataset in the Med cube This database contains the two Ocean-Soda datasets - v1 and v2, which are different products on different...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_ocean-soda_access_preview.png",
     "link": "external-notebooks/ocean/datasets/ocean-soda/access",
@@ -556,7 +556,7 @@
   },
   {
     "title": "Access Booms",
-    "description": "",
+    "description": "Satellite derived Seascapes generated as part of the ESA funded Biodiversity in the Open Ocean: Mapping, Monitoring and Modelling (BOOMS)  project....",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_booms_access_preview.png",
     "link": "external-notebooks/ocean/datasets/booms/access",
@@ -573,7 +573,7 @@
   },
   {
     "title": "Access 4DMED-SEA Primary Production",
-    "description": "",
+    "description": "Explore re-projected dataset in the Med cube Dataset with Primary Production field estimated from chlorophyll and temperature 3D fields (spatial resolution...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_4dmed-pp_access_preview.png",
     "link": "external-notebooks/ocean/datasets/4dmed-pp/access",
@@ -590,7 +590,7 @@
   },
   {
     "title": "Access SARWAVE sea state",
-    "description": "",
+    "description": "SARWAVE Sentinel-1 IW Level-2 products provide estimates of significant wave height and mean wave period from synthetic aperture radar observations,...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_sarwave_access_preview.png",
     "link": "external-notebooks/ocean/datasets/sarwave/access",
@@ -607,7 +607,7 @@
   },
   {
     "title": "Access 4DMED-SEA 3D Biophysical Fields",
-    "description": "",
+    "description": "Daily Mediterranean 3D fields of temperature, salinity, sea water density, chlorophyll field and  geostrophic current at 1/24\u00b0 of resolution, up to...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_4dmed-t-s-a-geo-150_access_preview.png",
     "link": "external-notebooks/ocean/datasets/4dmed-t-s-a-geo-150/access",
@@ -624,7 +624,7 @@
   },
   {
     "title": "Access CAREHeat",
-    "description": "",
+    "description": "Explore re-projected dataset in the Med cube The careheat datababase has several datasets related to marine heatwaves (MHWs) and cold spells (MCSs). 1....",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_careheat_access_preview.png",
     "link": "external-notebooks/ocean/datasets/careheat/access",
@@ -641,7 +641,7 @@
   },
   {
     "title": "MiTHo: access and interpret Cumulative Hazard Indices",
-    "description": "",
+    "description": "Explore re-projected dataset in the Med cube This dataset provides monthly information on Cumulative Hazard Indexs (CHIs) at the sea surface (3D, lat, lon,...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_mitho_access_preview.png",
     "link": "external-notebooks/ocean/datasets/mitho/access",
@@ -658,7 +658,7 @@
   },
   {
     "title": "Access 4DMED-2D PFT and Kd",
-    "description": "",
+    "description": "Explore re-projected dataset in the Med cube This dataset contains monthly Level-3 (L3) gridded maps (8 km resolution) of phytoplankton functional types...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_4dmed-2d-pft-kd_access_preview.png",
     "link": "external-notebooks/ocean/datasets/4dmed-2d-pft-kd/access",
@@ -675,7 +675,7 @@
   },
   {
     "title": "Access WOC Total Surface Current at 15 m",
-    "description": "",
+    "description": "Explore Data This dataset is derived from the original data source which contains the high-frequency total horizontal current at 15m depth on a global grid...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_woc_access_preview.png",
     "link": "external-notebooks/ocean/datasets/woc/access",
@@ -692,7 +692,7 @@
   },
   {
     "title": "Access 4DMED-SEA Sea-Surface Salinity",
-    "description": "",
+    "description": "Explore re-projected dataset in the Med cube Daily Mediterranean gap-free Level-4 (L4) analyses of the Sea Surface Salinity (SSS) and Sea Surface Density...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_4dmed-ss_access_preview.png",
     "link": "external-notebooks/ocean/datasets/4dmed-ss/access",
@@ -709,7 +709,7 @@
   },
   {
     "title": "Access 4DMED-SEA 4DVarNet 1/20\u00b0",
-    "description": "",
+    "description": "The gridded Sea Level Anomalies (SLA) presented here result from the application of the 4DVARNET algorithm, as described by Fablet et al., 2021. Here, the...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_ocean_1_Datasets_4dmed-4dvar-20_access_preview.png",
     "link": "external-notebooks/ocean/datasets/4dmed-4dvar-20/access",
@@ -726,7 +726,7 @@
   },
   {
     "title": "Intro",
-    "description": "",
+    "description": "There are multiple ways to interactivcely visualise COG files and their pyramids, a lot of which rely on some sort of http connection or local file server...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/visualisation/cog-visualisations",
@@ -742,7 +742,7 @@
   },
   {
     "title": "Basal Melt GeoZarr Conversion",
-    "description": "",
+    "description": "In order to display zarr files you hvae to manually build the pyramids similar to a cog file. You also have to link all of the data together, so that I...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/visualisation/geozarr-conversion",
@@ -758,7 +758,7 @@
   },
   {
     "title": "Antarctica Datacube Hackathon",
-    "description": "",
+    "description": "This repository contains the guided notebooks for the Antarctica Datacube Hackathon. They introduce the ESA Antarctica Datacube and show how to discover...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_0_Introduction_intro_preview.png",
     "link": "external-notebooks/polar/introduction/intro",
@@ -774,7 +774,7 @@
   },
   {
     "title": "Distributed Computing with Dask",
-    "description": "",
+    "description": "The Polar TEP workspace has an extension for Dask Gateway to enable scalable computing for analysing large datasets",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_0_Introduction_Polar-TEP_dask-gateway_preview.png",
     "link": "external-notebooks/polar/introduction/polar-tep/dask-gateway",
@@ -791,7 +791,7 @@
   },
   {
     "title": "Large Area Processing",
-    "description": "",
+    "description": "This notebook shows how you can run larger-scale analysis on full-resolution level 0 of the Antarctica land-ice GeoZarr. You will have to update the code...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/datacube/large-area-processing",
@@ -807,7 +807,7 @@
   },
   {
     "title": "Build one local datacube for a small ROI",
-    "description": "",
+    "description": "This notebook shows how to combine several datasets into a single cube in a simple way, based on nearest neighbours interpolation . It is similar to how the...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_2_Datacube_2_build_single_cube_demo_preview.png",
     "link": "external-notebooks/polar/datacube/build-single-cube-demo",
@@ -823,7 +823,7 @@
   },
   {
     "title": "ESA Antarctica Datacube",
-    "description": "",
+    "description": "The ESA Antarctica Datacube makes Antarctic scientific data easier to access and analyse by combining selected datasets into analysis-ready Zarr stores. The...",
     "metadata": {
       "vscode": {
         "languageId": "plaintext"
@@ -843,7 +843,7 @@
   },
   {
     "title": "Accessing ESA Antarctica Datacube Land Ice Data",
-    "description": "",
+    "description": "This notebook is a runnable remote-access demo for the published ESA Antarctica land-ice GeoZarr stores. It opens full-resolution group 0; use groups 1...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_2_Datacube_1_remote_cube_access_preview.png",
     "link": "external-notebooks/polar/datacube/remote-cube-access",
@@ -859,7 +859,7 @@
   },
   {
     "title": "Accessing ESA Antarctica Datacube Sea Ice Data",
-    "description": "",
+    "description": "This notebook is a runnable remote-access demo for the ESA Antarctica Datacube. The example uses an ROI close to Palmer Land and the George VI Ice Shelf....",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_2_Datacube_1_remote_sea_cube_access_preview.png",
     "link": "external-notebooks/polar/datacube/remote-sea-cube-access",
@@ -875,7 +875,7 @@
   },
   {
     "title": "Cloud-Native Formats And Metadata",
-    "description": "",
+    "description": "These notebooks show some of the conversion patterns used in the hackathon datasets. The focus is on file layout and metadata, not on deciding the...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/file-formats-and-metadata/intro",
@@ -891,7 +891,7 @@
   },
   {
     "title": "Create COGs From A Curvilinear NetCDF",
-    "description": "",
+    "description": "Depth requests are snapped to the nearest available source depth so the output filenames match actual data values.",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_3_File_formats_and_metadata_cog_1_cog_from_nc_preview.png",
     "link": "external-notebooks/polar/file-formats-and-metadata/cog/cog-from-nc",
@@ -908,7 +908,7 @@
   },
   {
     "title": "Build STAC Metadata For A COG",
-    "description": "",
+    "description": "This notebook derives spatial and raster metadata from the basal-melt COG and uses it to build a STAC Item. The same pattern applies to cloud-hosted COGs:...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/file-formats-and-metadata/cog/cog-metadata",
@@ -925,7 +925,7 @@
   },
   {
     "title": "Create A COG From A GeoTIFF",
-    "description": "",
+    "description": "We check the CRS, dimensions, block layout, and nodata value before writing the COG. The source file can still be read lazily with rioxarray.",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_3_File_formats_and_metadata_cog_1_cog_from_tiff_preview.png",
     "link": "external-notebooks/polar/file-formats-and-metadata/cog/cog-from-tiff",
@@ -942,7 +942,7 @@
   },
   {
     "title": "Zarr Metadata With xstac",
-    "description": "",
+    "description": "This cell reads the projected x and y coordinate limits, transforms them to WGS84, then sets the final geographic bounding box used in STAC. It also...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/file-formats-and-metadata/zarr/zarr-metadata",
@@ -959,7 +959,7 @@
   },
   {
     "title": "Convert NetCDF To Zarr",
-    "description": "",
+    "description": "This notebook converts the ice-temperature NetCDF example into a consolidated Zarr store. Zarr is useful for multidimensional arrays because chunked object...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/file-formats-and-metadata/zarr/zarr-from-nc-1",
@@ -976,7 +976,7 @@
   },
   {
     "title": "Rasterise GeoParquet To Zarr",
-    "description": "",
+    "description": "Vector datasets can be useful in combined cubes when they are rasterised onto the same grid as other variables. This notebook turns a GeoParquet polygon...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_3_File_formats_and_metadata_zarr_1_zarr_from_parquet(vector)_preview.png",
     "link": "external-notebooks/polar/file-formats-and-metadata/zarr/zarr-from-parquet-vector",
@@ -993,7 +993,7 @@
   },
   {
     "title": "Convert NetCDF To Zarr - Example 2",
-    "description": "",
+    "description": "This notebook shows a more detailed example of how the so-fresh data was processed; This notebook is a direct copy of the example post-processing of a...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/file-formats-and-metadata/zarr/zarr-from-nc-2",
@@ -1010,7 +1010,7 @@
   },
   {
     "title": "Convert COGs To Zarr",
-    "description": "",
+    "description": "COG is excellent for individual rasters. Zarr is often better when many rasters form a logical multidimensional collection, for example one COG per depth or...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/file-formats-and-metadata/zarr/zarr-from-cog",
@@ -1027,7 +1027,7 @@
   },
   {
     "title": "GeoParquet STAC Metadata",
-    "description": "",
+    "description": "The asset records where the Parquet file will live and identifies it as a data asset. The href remains the original placeholder until the object-store path...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/file-formats-and-metadata/parquet/parquet-metadata",
@@ -1044,7 +1044,7 @@
   },
   {
     "title": "Convert A Shapefile To GeoParquet",
-    "description": "",
+    "description": "This notebook converts the supraglacial-lakes shapefile archive into GeoParquet. GeoParquet keeps geometry and CRS metadata with the table and is much...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/file-formats-and-metadata/parquet/parquet-from-shp",
@@ -1061,7 +1061,7 @@
   },
   {
     "title": "Convert NetCDF Point Data To GeoParquet",
-    "description": "",
+    "description": "This notebook converts the ALBATROS tide-gauge NetCDF example into GeoParquet. The important steps are to flatten the NetCDF variables into a table and...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/file-formats-and-metadata/parquet/parquet-from-nc",
@@ -1078,7 +1078,7 @@
   },
   {
     "title": "Datasets prepared for the Antarctica Datacube Hackathon",
-    "description": "",
+    "description": "Each of the datasets has an associated notebook, referenced in the access column that shows how the data can be accessed directly from object storage. More...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/datasets/datasets-sumary",
@@ -1094,7 +1094,7 @@
   },
   {
     "title": "Calving Fronts",
-    "description": "",
+    "description": "Description: Time-evolving Antarctic calving fronts from observations. Original Data Source: https://zenodo.org/records/5903643 Reference:...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_1_Datasets_calving_fronts_access_preview.png",
     "link": "external-notebooks/polar/datasets/calving-fronts/access",
@@ -1111,7 +1111,7 @@
   },
   {
     "title": "Ice Temperature Profiles",
-    "description": "",
+    "description": "Description: The product \u201cinternal ice-sheet temperature\u201d is composed by maps of internal temperature for the regions in which the Robin model is valid D5-2...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/datasets/ice-temp/access",
@@ -1128,7 +1128,7 @@
   },
   {
     "title": "CS+AO Sea Ice Thickness",
-    "description": "",
+    "description": "- Description: Sea ice thickness derived from CryoSat-2 radar freeboard combined with the Altimetric Snow Depth snow solution. - Original data source:...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_1_Datasets_csao_access_preview.png",
     "link": "external-notebooks/polar/datasets/csao/access",
@@ -1145,7 +1145,7 @@
   },
   {
     "title": "Grounding Lines",
-    "description": "",
+    "description": "Description: This data set, part of the NASA Making Earth System Data Records for Use in Research Environments (MEaSUREs) program, provides 22 years of...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_1_Datasets_groundlines_access_preview.png",
     "link": "external-notebooks/polar/datasets/groundlines/access",
@@ -1162,7 +1162,7 @@
   },
   {
     "title": "Surface Elevation Change",
-    "description": "",
+    "description": "Description: The change in surface elevation of the Antarctic grounded ice sheet is measured from all available ESA Radar Altimetry missions (ERS-1, ERS-2,...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_1_Datasets_sec_access_preview.png",
     "link": "external-notebooks/polar/datasets/sec/access",
@@ -1179,7 +1179,7 @@
   },
   {
     "title": "AI4AIS",
-    "description": "",
+    "description": "Description: AI4AIS data cube for the Larsen C ice shelf cube. In addition to wind speed, surface mass balance, and ice velocity, we incorporate surface...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_1_Datasets_ai4ais_access_preview.png",
     "link": "external-notebooks/polar/datasets/ai4ais/access",
@@ -1196,7 +1196,7 @@
   },
   {
     "title": "ALBATROS Tidal Elevation",
-    "description": "",
+    "description": "- ALBATROS Description: Decade-long most recently reprocessed CryoSat datasets, innovative information on bathymetry gradient location through the analysis...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_1_Datasets_albatros_access_preview.png",
     "link": "external-notebooks/polar/datasets/albatros/access",
@@ -1213,7 +1213,7 @@
   },
   {
     "title": "Ice Shelf Basal Melt",
-    "description": "",
+    "description": "Description: Antarctic ice shelf basal melt rates from 1997 to 2021. All code required to reproduce the results presented in Davison et al. Annual mass...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_1_Datasets_basal_melt_access_preview.png",
     "link": "external-notebooks/polar/datasets/basal-melt/access",
@@ -1230,7 +1230,7 @@
   },
   {
     "title": "Ice Velocity",
-    "description": "",
+    "description": "Description: This dataset contains monthly gridded ice velocity maps of the Antarctic Ice Sheet derived from Sentinel-1 data acquired between 2014-01-01 and...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/datasets/ice-velocity/access",
@@ -1247,7 +1247,7 @@
   },
   {
     "title": "Subglacial Lakes",
-    "description": "",
+    "description": "Description: 85 active Antarctic subglacial lakes detected from a decade of CryoSat-2 radar altimetry. Documenting draining and filling events and...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_1_Datasets_subglacial_lakes_access_preview.png",
     "link": "external-notebooks/polar/datasets/subglacial-lakes/access",
@@ -1264,7 +1264,7 @@
   },
   {
     "title": "BedMachine Antarctica",
-    "description": "",
+    "description": "- Description: Bed topography and bathymetry map of Antarctica with ice thickness, surface elevation, and mask layers. - Original data source:...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_1_Datasets_bedrock_topography_access_preview.png",
     "link": "external-notebooks/polar/datasets/bedrock-topography/access",
@@ -1281,7 +1281,7 @@
   },
   {
     "title": "Supraglacial Lakes",
-    "description": "",
+    "description": "Description: This dataset consists of the maximum extent of supraglacial hydrological activity during January 2017 and detailed 10,478 supraglacial features...",
     "metadata": {},
     "image": "build/_assets/previews/eoxhub_jupyter.jpg",
     "link": "external-notebooks/polar/datasets/supraglacial-lakes/access",
@@ -1298,7 +1298,7 @@
   },
   {
     "title": "SOFRESH Sea Surface Salinity",
-    "description": "",
+    "description": "Description: Dedicated regional Sea Surface Salinity (SSS) product in the Southern Ocean. Level 3 9-day maps. Data acquisition: Satellite ESA SMOS mission...",
     "metadata": {},
     "image": "build/_assets/previews/external_notebooks_polar_1_Datasets_sofresh_access_preview.png",
     "link": "external-notebooks/polar/datasets/sofresh/access",
