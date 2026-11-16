@@ -1,0 +1,1 @@
+import{a as e,b as r}from"/hackathon-notebooks/build/_shared/chunk-7FGDXJSL.js";import"/hackathon-notebooks/build/_shared/chunk-GEZIJWLJ.js";import"/hackathon-notebooks/build/_shared/chunk-RAQ24GF6.js";export{e as ArchitectureModule,r as createArchitectureServices};
