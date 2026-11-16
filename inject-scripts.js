@@ -28,8 +28,6 @@ const DYNAMIC_SCRIPT = `
 <script>
   (function() {
     // 1. STATE MANAGEMENT
-    // Start with the generic fallback, but we will overwrite this
-    // as soon as Luigi gives us the real context.
     const DEFAULT_FALLBACK = "https://workspace.cubes-and-clouds.earthcode.eox.at/hub/user-redirect/git-pull";
     let activeHubUrl = DEFAULT_FALLBACK;
     
@@ -55,26 +53,58 @@ const DYNAMIC_SCRIPT = `
     function setupContextListener() {
         if (!window.LuigiClient) return;
 
-        // Listen for the handshake data from the Parent Frame
         window.LuigiClient.addInitListener((context) => {
             log("✅ Context Received");
-            
-            // EXTRACT DYNAMIC HOME URL
-            // structure: context.workspaceConfig.home -> "https://workspace.triallps25..."
             if (context.workspaceConfig && context.workspaceConfig.home) {
                 const home = context.workspaceConfig.home;
-                // Ensure no trailing slash, then append the hub path
                 activeHubUrl = home.replace(/\\/$/, '') + "/hub/user-redirect/git-pull";
-                
                 log("Updated Hub URL to: " + activeHubUrl);
-                
-                // Force update any buttons already rendered on the page
                 refreshRocketLinks();
             }
         });
     }
 
-    // --- 3. URL BUILDERS ---
+    // --- 3. CATALOG FETCH & URL BUILDERS ---
+    let catalogNotebooks = [];
+
+    function fetchCatalog() {
+        const rootPath = window.location.pathname.includes('/hackathon-notebooks') 
+            ? '/hackathon-notebooks/notebooks.json' 
+            : './notebooks.json';
+        fetch(rootPath)
+            .then(r => r.json())
+            .then(data => {
+                catalogNotebooks = data;
+                refreshRocketLinks();
+            })
+            .catch(() => {
+                fetch('./notebooks.json')
+                    .then(r => r.json())
+                    .then(data => {
+                        catalogNotebooks = data;
+                        refreshRocketLinks();
+                    })
+                    .catch(() => {});
+            });
+    }
+
+    function getCatalogItemForCurrentPage() {
+        if (!catalogNotebooks || !catalogNotebooks.length) return null;
+        let currentPath = window.location.pathname
+            .replace(/^\/hackathon-notebooks\//, '')
+            .replace(/^\//, '')
+            .replace(/\/$/, '')
+            .replace(/\.html$/, '');
+
+        return catalogNotebooks.find(item => {
+            let itemLink = (item.link || '')
+                .replace(/^\//, '')
+                .replace(/\/$/, '')
+                .replace(/\.html$/, '');
+            return itemLink === currentPath;
+        });
+    }
+
     function getRepoInfo() {
         const editLink = document.querySelector('a.myst-fm-edit-link');
         if (!editLink || !editLink.href) return null;
@@ -91,25 +121,29 @@ const DYNAMIC_SCRIPT = `
     }
 
     function getLaunchUrl() {
+        const item = getCatalogItemForCurrentPage();
+        if (item && item.gitpuller) {
+            const hostDomain = activeHubUrl.replace(/^https?:\\/\\//, '').replace(/\\/.*$/, '');
+            return item.gitpuller.replace('{JHUB_HOST}', hostDomain);
+        }
+
         const info = getRepoInfo();
         if (!info) return null;
         
         const repoName = info.repoUrl.split('/').pop(); 
         const jupyterPath = \`lab/tree/\${repoName}/\${info.filePath}\`;
         
-        // Use the DYNAMIC 'activeHubUrl' here
         const query = \`?repo=\${encodeURIComponent(info.repoUrl)}&urlpath=\${encodeURIComponent(jupyterPath)}&branch=\${info.branch}\`;
         return \`\${activeHubUrl}\${query}\`;
     }
 
-    // Helper to update existing buttons when context arrives
     function refreshRocketLinks() {
         const btn = document.querySelector('.custom-rocket-btn');
         if (btn) {
             const newUrl = getLaunchUrl();
             if (newUrl) {
                 btn.href = newUrl;
-                log("Refreshed Button HREF");
+                log("Refreshed Button HREF: " + newUrl);
             }
         }
     }
@@ -126,23 +160,28 @@ const DYNAMIC_SCRIPT = `
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             if (window.LuigiClient && window.LuigiClient.isLuigiClientInitialized()) {
-                window.LuigiClient.linkManager().goBack();
+                try {
+                    window.LuigiClient.linkManager().goBack();
+                } catch (err) {
+                    window.history.back();
+                }
             } else {
-                window.history.back();
+                if (window.history.length > 1) {
+                    window.history.back();
+                } else {
+                    window.location.href = './';
+                }
             }
         });
         return btn;
     }
 
     function createRocketButton() {
-        // Initial create might happen before Context arrives
-        // That's fine, we update it in 'refreshRocketLinks' later
         const absoluteUrl = getLaunchUrl();
-        if (!absoluteUrl) return null;
 
         const link = document.createElement('a');
         link.className = 'custom-toolbar-btn custom-rocket-btn';
-        link.href = absoluteUrl; 
+        if (absoluteUrl) link.href = absoluteUrl; 
         link.target = '_blank';
         link.setAttribute('aria-label', 'Execute in workspace');
         link.title = "Execute in workspace";
@@ -150,12 +189,9 @@ const DYNAMIC_SCRIPT = `
         
         link.addEventListener('click', (e) => {
             const isLuigiReady = window.LuigiClient && window.LuigiClient.isLuigiClientInitialized();
-            
-            // RE-READ the href at click time to ensure we use the updated URL
-            // (in case context arrived after button creation)
             const currentHref = link.href;
 
-            if (isLuigiReady) {
+            if (isLuigiReady && currentHref) {
                 e.preventDefault();
                 try {
                     const urlObj = new URL(currentHref);
@@ -178,34 +214,29 @@ const DYNAMIC_SCRIPT = `
     function checkAndInject() {
         const toolbars = document.querySelectorAll('.myst-fm-block-header');
         toolbars.forEach(toolbar => {
-            const subject = toolbar.querySelector('.myst-fm-block-subject');
-            if (subject && subject.innerText.includes("Notebook examples")) {
-                
-                // Back Button
-                if (!toolbar.querySelector('.custom-back-btn')) {
-                    const backBtn = createBackButton();
-                    const badges = toolbar.querySelector('.myst-fm-block-badges');
-                    if (badges) toolbar.insertBefore(backBtn, badges);
-                    else toolbar.appendChild(backBtn);
-                }
+            if (!toolbar.querySelector('.custom-back-btn')) {
+                const backBtn = createBackButton();
+                const badges = toolbar.querySelector('.myst-fm-block-badges');
+                if (badges) toolbar.insertBefore(backBtn, badges);
+                else toolbar.appendChild(backBtn);
+            }
 
-                // Rocket Button
-                if (!toolbar.querySelector('.custom-rocket-btn')) {
-                    const rocketBtn = createRocketButton();
-                    if (rocketBtn) toolbar.appendChild(rocketBtn);
-                }
+            if (!toolbar.querySelector('.custom-rocket-btn')) {
+                const rocketBtn = createRocketButton();
+                if (rocketBtn) toolbar.appendChild(rocketBtn);
             }
         });
     }
 
     // --- 6. INIT ---
     window.addEventListener('load', () => {
+        fetchCatalog();
         loadLuigiClient(() => {});
         setTimeout(() => {
             checkAndInject();
             const observer = new MutationObserver(() => checkAndInject());
             observer.observe(document.body, { childList: true, subtree: true });
-        }, 1000); 
+        }, 500); 
     });
 
   })();
